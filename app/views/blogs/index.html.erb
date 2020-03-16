@@ -1,0 +1,69 @@
+<div class = "container">
+
+  <div class = "row">
+
+    <div class = "col-md-8">
+      <% @blogs.each do |blog| %>
+    <div class = "card my-5">
+      <div class = "card-body">
+        <div class = "card-title">
+          <%= link_to blog.title, blog %>
+        </div>
+
+        <div class = "card-text">
+          <div class = "row">
+            <div class = "col-md-2">
+              <%= image_tag "YhL32InJIKXHdPnjsJF3iC8HAhfwNIDfNt1mNWDi.jpg", :size =>'150x100'%>
+            </div>
+            <div class = "col-md-10 text-right">
+              <%= blog.body.truncate(100) %>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <div class = "card-footer text-right">
+      <%= blog.updated_at.strftime("%Y-%m-%d")%>
+      <%= blog.user_name %>
+      <%= link_to edit_blog_path(blog), method: :get do%>
+        <i class = "far fa-edit"></i>
+      <% end %>
+
+      <%= link_to blog, method: :delete, data: {confirm: "'Are you sure?'"} do %>
+        <i class = "far fa-trash-alt"></i>
+      <% end %>
+    </div>
+    </div>
+    <% end %>
+    </div>
+
+
+
+    <div class = "col-md-3 my-5">
+      <h3>新着記事</h3>
+     <% @blogs.each do |blog| %>
+      <div class = "card-sidemenu my-5">
+        <div class = "card-sidemenu-body">
+          <div class = "card-sidemenu-title">
+            <%= link_to blog.title, blog %>
+          </div>
+
+    <div class = "card-sidemenu-text">
+      <div class = "row">
+        <div class = "col-md-2">
+          <%= image_tag "YhL32InJIKXHdPnjsJF3iC8HAhfwNIDfNt1mNWDi.jpg", :size =>'150x100'%>
+        </div>
+        <div class = "col-md-10 text-right">
+          <%= blog.body.truncate(10) %>
+        </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+ </div>
+</div>
+</div>
+</div>
+</div>
+
+<%= link_to '新規投稿', new_blog_path, class: "btn btn-block btn-secondary btn-sm"%>

@@ -1,0 +1,52 @@
+<div class = "container">
+
+   <div class = "col-md-8">
+    <div class = "card-body">
+      <div class = "card-image">
+        <%= image_tag "YhL32InJIKXHdPnjsJF3iC8HAhfwNIDfNt1mNWDi.jpg", :size =>'400x300'%>
+         <%#= @upload.image %>
+        <%#= image_tag @upload.image_url(:thumb) if @upload.image.present? %>
+      <div class = "card-title">
+        <h1>
+          <%= @blog.title %>
+        </h1>
+        <div class = "text-right">
+          更新日<%= @blog.updated_at.strftime("%Y-%m-%d")%>
+      </div>
+    </div>
+      <div class = "card-text">
+        <%= @blog.body %>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <%= link_to '編集', edit_blog_path(@blog) %> |
+  <%= link_to '記事一覧', blogs_path %>
+
+
+  <h3>コメント一覧</h3>
+  <% @blog.comments.each do |comment| %>
+    <p>
+      <%= comment.commenter %>: <%= comment.body %>
+      <%= link_to "削除", [comment.blog, comment],
+                  :confirm => "よろしいですか？",
+                  :method => :delete %>
+    
+    </p>
+  <% end %>
+
+  <h3>コメントを書く</h3>
+  <%= form_for([@blog, @blog.comments.build]) do |f| %>
+    <div class = "field mb-2">
+      <%= f.text_field :commenter, placeholder: "名前", class: "form-control" %>
+    </div>
+    <div class = "field mb-2">
+      <%= f.text_area :body, placeholder: "本文を入力してください", class: "form-control"%>
+    </div>
+    <div class = "actions">
+      <%= f.submit "投稿する", class: "btn btn-block btn-secondary btn-sm" %>
+    </div>
+  <% end %>
+  </div>
+</div>
