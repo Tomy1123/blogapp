@@ -10,6 +10,7 @@ class BlogsController < ApplicationController
   # GET /blogs/1
   # GET /blogs/1.json
   def show
+    # @like=Like.find[params[:id]]
   end
 
   # GET /blogs/new

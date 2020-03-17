@@ -18,7 +18,17 @@
         <%= @blog.body %>
       </div>
     </div>
-  </div>
+     <% unless @like%>
+        <div id="like-button">
+        <%= link_to "いいね！" %>
+        <%#= @slike.like %>
+        </div>
+      <%else%>
+        <div id="like-button">
+        <%= link_to "いいねしました！" %>
+        </div>
+     <% end %>
+   </div>
   </div>
 
   <%= link_to '編集', edit_blog_path(@blog) %> |

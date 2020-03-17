@@ -12,10 +12,10 @@
 
         <div class = "card-text">
           <div class = "row">
-            <div class = "col-md-2">
+            <div class = "col-md-4">
               <%= image_tag "YhL32InJIKXHdPnjsJF3iC8HAhfwNIDfNt1mNWDi.jpg", :size =>'150x100'%>
             </div>
-            <div class = "col-md-10 text-right">
+            <div class = "col-md-8 text-right">
               <%= blog.body.truncate(100) %>
             </div>
         </div>
@@ -41,7 +41,7 @@
 
     <div class = "col-md-3 my-5">
       <h3>新着記事</h3>
-     <% @blogs.each do |blog| %>
+     <% @blogs.each.reverse_each do |blog| %>
       <div class = "card-sidemenu my-5">
         <div class = "card-sidemenu-body">
           <div class = "card-sidemenu-title">
@@ -50,10 +50,10 @@
 
     <div class = "card-sidemenu-text">
       <div class = "row">
-        <div class = "col-md-2">
-          <%= image_tag "YhL32InJIKXHdPnjsJF3iC8HAhfwNIDfNt1mNWDi.jpg", :size =>'150x100'%>
+        <div class = "col-md-4">
+          <%= image_tag "YhL32InJIKXHdPnjsJF3iC8HAhfwNIDfNt1mNWDi.jpg", :size =>'100x80'%>
         </div>
-        <div class = "col-md-10 text-right">
+        <div class = "col-md-8 text-right">
           <%= blog.body.truncate(10) %>
         </div>
         </div>
