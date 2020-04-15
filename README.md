@@ -1,24 +1,12 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# ブログ
 
-Things you may want to cover:
+## 説明
 
-* Ruby version
+記事の投稿、編集、削除が出来るブログアプリです。
 
-* System dependencies
+## このサイトは何のためにありますか？
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+自分のアウトプットのために作りました。<br>
+プログラミング技術の向上はもちろん、趣味についても日々の出来事を残したいと思い作りました。
