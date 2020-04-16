@@ -23,7 +23,7 @@
 
 ## 本番環境（URL）
 
-以下から確認出来ます↓
+以下から確認出来ます↓<br>
 https://blooming-spire-95479.herokuapp.com/blogs
 
 ## デモ(GIF)
