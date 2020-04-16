@@ -10,8 +10,6 @@ $(function() {
     })
     .done(function(blogs) {
       if (blogs.length !== 0) {
-      
-        const data = blogs.map(obj => obj.title);
         console.log(data)
         $('#blog_search').autocomplete({
           autoFocus: true,
