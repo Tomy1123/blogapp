@@ -14,7 +14,6 @@ class UploadsController < ApplicationController
 
   # GET /uploads/new
   def new
-    @upload = Upload.new
   end
 
   # GET /uploads/1/edit
@@ -69,6 +68,6 @@ class UploadsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def upload_params
-      params.require(:upload).permit(:image, :title, :body)
+      params.require(:upload).permit(:image)
     end
 end

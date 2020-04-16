@@ -1,16 +1,21 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
+  # autocomplete :blog, :title, :full => true
+
 
   # GET /blogs
   # GET /blogs.json
   def index
     @blogs = Blog.all
+    # @user = User.find(params[:id])
   end
 
   # GET /blogs/1
   # GET /blogs/1.json
   def show
     # @like=Like.find[params[:id]]
+    @blog = Blog.find(params[:id])
+    @like = Like.new
   end
 
   # GET /blogs/new
@@ -20,6 +25,10 @@ class BlogsController < ApplicationController
 
   # GET /blogs/1/edit
   def edit
+  end
+
+  def search
+    @blogs = Blog.search(params[:keyword])
   end
 
   # POST /blogs
@@ -32,8 +41,9 @@ class BlogsController < ApplicationController
         format.html { redirect_to @blog, notice: 'Blog was successfully created.' }
         format.json { render :show, status: :created, location: @blog }
       else
-        format.html { render :new }
+        flash.now[:alert] = '必須事項を入力してください。'
         format.json { render json: @blog.errors, status: :unprocessable_entity }
+        render "new"
       end
     end
   end
@@ -70,6 +80,6 @@ class BlogsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def blog_params
-      params.require(:blog).permit(:title, :body, :user_name, :user_id)
+      params.require(:blog).permit(:title, :body, :user_name, :user_id, :image)
     end
 end

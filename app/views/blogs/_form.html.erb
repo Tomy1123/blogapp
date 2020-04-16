@@ -23,18 +23,9 @@
 
   <div class="field">
     <%= form.label :body %>
-    <%= form.text_area :body, class: "form-control" %>
+    <%= form.text_area :body, class: "form-control", :size =>'10x10' %>
   </div>
 
-  <div class="field">
-    <%= form.label :user_name %>
-    <%= form.text_field :user_name, class: "form-control" %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id, class: "form-control" %>
-  </div>
 
   <div class="actions mt-2">
     <%= form.submit "投稿", class: "btn btn-secondary btn-lg btn-block"%>

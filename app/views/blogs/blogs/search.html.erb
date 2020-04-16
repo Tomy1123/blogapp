@@ -1,0 +1,6 @@
+.chat-main
+  -@blogs.each do |blog|
+   .chat-main__post
+    = link_to blog_path(blog) do
+     .chat-main__blog__title
+      ="・ #{blog.title}"

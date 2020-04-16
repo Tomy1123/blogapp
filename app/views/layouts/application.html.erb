@@ -12,34 +12,26 @@
   </head>
 
   <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-top">
-  <a class="navbar-brand text-white" href="/"><h3>Blog</h3></a>
+  <nav class="navbar navbar-expand-lg navbar-light bg-dark ">
+  <a class="navbar-brand text-white" href="/"><h3>YU-GI-OH!Blog</h3></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link text-white" href="/">ALL <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-white" href="#">POPULAR</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <%# <a class="nav-link disabled text-white" href="#">Disabled</a> %>
-      </li>
+      <% if user_signed_in? %>
+        <li class="nav-item mr-auto">
+          <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-white'%>
+        </li>
+      <% else %>
+        <li class="nav-item active">
+          <a class="nav-link text-white" href="users/sign_in">ログイン</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="/users/sign_up">新規登録</a>
+        </li>
+      <% end %>
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -49,7 +41,7 @@
 </nav>
 
 
-<%= image_tag"picture.png", size: '144*150'%>
+<%= image_tag"DtxBxALVAAA2NUb.jpg", class: "d-block mx-auto" %>
     <%= yield %>
     
 <footer class = "container-fluid mt-4 text-center small d-none d-sm-block bg-light">

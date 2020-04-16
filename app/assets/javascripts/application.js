@@ -19,3 +19,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require marked
+//= require jquery-ui
+//= require autocomplete-rails

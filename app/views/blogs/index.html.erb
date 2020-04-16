@@ -13,7 +13,7 @@
         <div class = "card-text">
           <div class = "row">
             <div class = "col-md-4">
-              <%= image_tag "YhL32InJIKXHdPnjsJF3iC8HAhfwNIDfNt1mNWDi.jpg", :size =>'150x100'%>
+              <%= image_tag blog.image.url, :size =>'150x100'%>
             </div>
             <div class = "col-md-8 text-right">
               <%= blog.body.truncate(100) %>
@@ -22,15 +22,22 @@
       </div>
     </div>
 
+    
     <div class = "card-footer text-right">
-      <%= blog.updated_at.strftime("%Y-%m-%d")%>
-      <%= blog.user_name %>
-      <%= link_to edit_blog_path(blog), method: :get do%>
-        <i class = "far fa-edit"></i>
-      <% end %>
+      <i class="fas fa-heart unlike-btn " data-angle='270'></i>
+      <%= blog.liked_users.count %>
+      <% if user_signed_in? %>
+        <% if current_user == @user || current_user.admin? %>
+          <%= blog.updated_at.strftime("%Y-%m-%d")%>
+          <%= blog.user_name %>
+          <%= link_to edit_blog_path(blog), method: :get do%>
+            <i class = "far fa-edit"></i>
+          <% end %>
 
-      <%= link_to blog, method: :delete, data: {confirm: "'Are you sure?'"} do %>
-        <i class = "far fa-trash-alt"></i>
+          <%= link_to blog, method: :delete, data: {confirm: "'Are you sure?'"} do %>
+            <i class = "far fa-trash-alt"></i>
+          <% end %>
+        <% end %>
       <% end %>
     </div>
     </div>
@@ -51,7 +58,7 @@
     <div class = "card-sidemenu-text">
       <div class = "row">
         <div class = "col-md-4">
-          <%= image_tag "YhL32InJIKXHdPnjsJF3iC8HAhfwNIDfNt1mNWDi.jpg", :size =>'100x80'%>
+          <%= image_tag blog.image.url, :size =>'100x80'%>
         </div>
         <div class = "col-md-8 text-right">
           <%= blog.body.truncate(10) %>

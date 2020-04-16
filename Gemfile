@@ -65,3 +65,6 @@ gem "jquery-rails"
 gem 'marked-rails'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'devise'
+gem 'jquery-ui-rails'
+gem 'rails4-autocomplete'

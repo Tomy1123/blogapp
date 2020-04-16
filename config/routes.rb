@@ -1,10 +1,25 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :uploads
   root "blogs#index"
 
   resources :blogs do
-    resources :comments
+    resources :likes, only: [:create, :destroy]
+    resources :comments, only: [:create]
+    collection do
+      get 'search'
+    end
+    
   end
+
+  Rails.application.routes.draw do
+    resources :blogs do
+      get :autocomplete_blog_title, on: :collection # 追加
+    end
+  end
+  
+
+
 
   resources :spots
   get '/spots/:id/likes', to: 'spots#likes'

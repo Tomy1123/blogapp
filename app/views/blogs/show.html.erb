@@ -1,11 +1,11 @@
 <div class = "container">
 
-   <div class = "col-md-8">
+   <div class = "mx-auto" style="width: 800px;">
     <div class = "card-body">
       <div class = "card-image">
-        <%= image_tag "YhL32InJIKXHdPnjsJF3iC8HAhfwNIDfNt1mNWDi.jpg", :size =>'400x300'%>
-         <%#= @upload.image %>
-        <%#= image_tag @upload.image_url(:thumb) if @upload.image.present? %>
+        <% if @blog.image? %>
+          <%= image_tag @blog.image.url, class: "d-block mx-auto", :size =>'700x300' %>
+        <% end %>
       <div class = "card-title">
         <h1>
           <%= @blog.title %>
@@ -18,39 +18,42 @@
         <%= @blog.body %>
       </div>
     </div>
-     <% unless @like%>
-        <div id="like-button">
-        <%= link_to "いいね！" %>
-        <%#= @slike.like %>
-        </div>
-      <%else%>
-        <div id="like-button">
-        <%= link_to "いいねしました！" %>
-        </div>
-     <% end %>
+      <% if current_user.already_liked?(@blog) %>
+        <%= link_to blog_like_path(blog_id: @blog.id), method: :delete do %>
+          <i class="fas fa-heart unlike-btn"><%= @blog.likes.count %></i>
+        <% end %>
+      <% else %>
+        <%= link_to blog_likes_path(blog_id: @blog.id), method: :post do %>
+          <i class="far fa-heart like-btn" ><%= @blog.likes.count %></i>
+        <% end %>
+      <% end %>
    </div>
   </div>
 
-  <%= link_to '編集', edit_blog_path(@blog) %> |
+  <% if user_signed_in? %>
+    <% if current_user == @user || current_user.admin? %>
+      <%= link_to '編集', edit_blog_path(@blog) %> |
+    <% end %>
+  <% end %>
   <%= link_to '記事一覧', blogs_path %>
 
 
   <h3>コメント一覧</h3>
   <% @blog.comments.each do |comment| %>
     <p>
-      <%= comment.commenter %>: <%= comment.body %>
-      <%= link_to "削除", [comment.blog, comment],
-                  :confirm => "よろしいですか？",
-                  :method => :delete %>
-    
+      <%= comment.commenter %>YP： <%= comment.body %>
+      <% if user_signed_in? %>
+        <% if current_user == @user || current_user.admin? %>
+          <%= link_to "削除", [comment.blog, comment],
+                      :confirm => "よろしいですか？",
+                      :method => :delete %>
+        <% end %>
+      <% end %>
     </p>
   <% end %>
 
   <h3>コメントを書く</h3>
   <%= form_for([@blog, @blog.comments.build]) do |f| %>
-    <div class = "field mb-2">
-      <%= f.text_field :commenter, placeholder: "名前", class: "form-control" %>
-    </div>
     <div class = "field mb-2">
       <%= f.text_area :body, placeholder: "本文を入力してください", class: "form-control"%>
     </div>
