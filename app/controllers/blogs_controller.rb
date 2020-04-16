@@ -36,15 +36,13 @@ class BlogsController < ApplicationController
   def create
     @blog = Blog.new(blog_params)
 
-    respond_to do |format|
-      if @blog.save
-        format.html { redirect_to @blog, notice: 'Blog was successfully created.' }
-        format.json { render :show, status: :created, location: @blog }
-      else
-        flash.now[:alert] = '必須事項を入力してください。'
-        format.json { render json: @blog.errors, status: :unprocessable_entity }
-        render "new"
-      end
+  
+    if @blog.save
+      render "show"
+    else
+      flash.now[:alert] = '必須事項を入力してください。'
+      
+      render "new"
     end
   end
 
@@ -80,6 +78,6 @@ class BlogsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def blog_params
-      params.require(:blog).permit(:title, :body, :user_name, :user_id, :image)
+      params.require(:blog).permit(:title, :body, :image)
     end
 end

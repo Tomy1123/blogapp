@@ -44,9 +44,7 @@
       <%= comment.commenter %>名も無きYP： <%= comment.body %>
       <% if user_signed_in? %>
         <% if current_user == @user || current_user.admin? %>
-          <%= link_to "削除", [comment.blog, comment],
-                      :confirm => "よろしいですか？",
-                      :method => :delete %>
+          
         <% end %>
       <% end %>
     </p>
@@ -58,7 +56,7 @@
       <%= f.text_area :body, placeholder: "本文を入力してください", class: "form-control"%>
     </div>
     <div class = "actions">
-      <%= f.submit "投稿する", class: "btn btn-block btn-secondary btn-sm" %>
+      <%= link_to '投稿', blogs_path, class: "btn btn-block btn-secondary btn-sm" %>
     </div>
   <% end %>
   </div>
