@@ -41,7 +41,7 @@
   <h3>コメント一覧</h3>
   <% @blog.comments.each do |comment| %>
     <p>
-      <%= comment.commenter %>YP： <%= comment.body %>
+      <%= comment.commenter %>名も無きYP： <%= comment.body %>
       <% if user_signed_in? %>
         <% if current_user == @user || current_user.admin? %>
           <%= link_to "削除", [comment.blog, comment],

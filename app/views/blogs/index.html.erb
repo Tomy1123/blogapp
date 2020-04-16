@@ -24,7 +24,7 @@
 
     
     <div class = "card-footer text-right">
-      <i class="fas fa-heart unlike-btn " data-angle='270'></i>
+      <i class="fas fa-heart unlike-btn "></i>
       <%= blog.liked_users.count %>
       <% if user_signed_in? %>
         <% if current_user == @user || current_user.admin? %>
@@ -73,4 +73,8 @@
 </div>
 </div>
 
-<%= link_to '新規投稿', new_blog_path, class: "btn btn-block btn-secondary btn-sm"%>
+<% if user_signed_in? %>
+  <% if current_user == @user || current_user.admin? %>
+    <%= link_to '新規投稿', new_blog_path, class: "btn btn-block btn-secondary btn-sm"%>
+  <% end %>
+<% end %>
